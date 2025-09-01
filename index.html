@@ -1,0 +1,38 @@
+<script>
+  const API_URL = "https://script.google.com/macros/s/xxxxxxx/exec"; // ใส่ลิงก์ Web App
+
+  const clans = [
+    { name: "เหล่าราชหัสดิน", img: "images/rajhasdin.png" },
+    { name: "เหล่าชลาศัย", img: "images/chalasai.png" },
+    { name: "เหล่าจตุรงค์", img: "images/jaturong.png" }
+  ];
+
+  async function randomClan() {
+    const name = document.getElementById("name").value.trim();
+    const account = document.getElementById("account").value.trim();
+    if (!name || !account) {
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+      return;
+    }
+
+    const clan = clans[Math.floor(Math.random() * clans.length)];
+
+    // ส่งข้อมูลไป Google Apps Script
+    let res = await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({ name, account, clan: clan.name }),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    let result = await res.json();
+
+    if (result.status === "success") {
+      document.getElementById("result").innerHTML = `
+        <p>คุณ <b>${name}</b><br>ได้อยู่ <span style="color:#6a1b09">${clan.name}</span></p>
+        <img src="${clan.img}" alt="${clan.name}">
+      `;
+    } else {
+      document.getElementById("result").innerHTML = `<p style="color:red">${result.message}</p>`;
+    }
+  }
+</script>
