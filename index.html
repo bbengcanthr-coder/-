@@ -1,38 +1,231 @@
-<script>
-  const API_URL = "https://script.google.com/macros/s/AKfycbwDhylR9wARk9dVmFRoOa3UdKdAOqoeazq36JYlpBKdTsAULLD-SOes8lfEA61-mniS/exec"; // ใส่ลิงก์ Web App
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOU ความร่วมมือวิทยาลัยการบิน</title>
 
-  const clans = [
-    { name: "เหล่าราชหัสดิน", img: "เหล่าราชหัสดิน.png" },
-    { name: "เหล่าชลาศัย", img: "เหล่าชลาศัย.png" },
-    { name: "เหล่าจตุรงค์", img: "เหล่าจตุรงค์.png" }
-  ];
+<style>
+body {
+    margin: 0;
+    font-family: "Sarabun", sans-serif;
+    background: #f2f4f8;
+    color: #222;
+    line-height: 1.8;
+}
 
-  async function randomClan() {
-    const name = document.getElementById("name").value.trim();
-    const account = document.getElementById("account").value.trim();
-    if (!name || !account) {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-      return;
+header {
+    background: #0a1f44;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+nav {
+    background: #142f66;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.section {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.section h2 {
+    border-left: 6px solid #0a1f44;
+    padding-left: 10px;
+    color: #0a1f44;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+.signature {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signature div {
+    width: 45%;
+    text-align: center;
+}
+
+footer {
+    background: #0a1f44;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+button {
+    background: #0a1f44;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #163d85;
+}
+
+@media print {
+    nav, button, footer {
+        display: none;
     }
+}
+</style>
+</head>
 
-    const clan = clans[Math.floor(Math.random() * clans.length)];
+<body>
 
-    // ส่งข้อมูลไป Google Apps Script
-    let res = await fetch(API_URL, {
-      method: "POST",
-      body: JSON.stringify({ name, account, clan: clan.name }),
-      headers: { "Content-Type": "application/json" }
-    });
+<header>
+    <h1>บันทึกข้อตกลงความร่วมมือ (MOU)</h1>
+    <p>โครงการจัดการเรียนการสอนวิทยาลัยการบินร่วมกัน</p>
+    <p>ระหว่าง มหาวิทยาลัยสิบศิลป์ และ มหาวิทยาลัยเบงจันทร์</p>
+</header>
 
-    let result = await res.json();
+<nav>
+    <a href="#principle">หลักการ</a>
+    <a href="#scope">ขอบเขต</a>
+    <a href="#management">บริหาร</a>
+    <a href="#academic">การเรียนการสอน</a>
+    <a href="#finance">การเงิน</a>
+    <a href="#liability">ความรับผิด</a>
+</nav>
 
-    if (result.status === "success") {
-      document.getElementById("result").innerHTML = `
-        <p>คุณ <b>${name}</b><br>ได้อยู่ <span style="color:#6a1b09">${clan.name}</span></p>
-        <img src="${clan.img}" alt="${clan.name}">
-      `;
-    } else {
-      document.getElementById("result").innerHTML = `<p style="color:red">${result.message}</p>`;
-    }
-  }
-</script>
+<div class="container">
+
+<div id="principle" class="section">
+<h2>1. หลักการและเหตุผล</h2>
+<p>เพื่อพัฒนากำลังคนด้านการบินให้มีคุณภาพตามมาตรฐานวิชาชีพ และเพื่อใช้ทรัพยากรทางการศึกษาร่วมกันให้เกิดประโยชน์สูงสุด ทั้งสองมหาวิทยาลัยตกลงจัดทำความร่วมมือทางวิชาการภายใต้กรอบ MOU ฉบับนี้</p>
+</div>
+
+<div class="section">
+<h2>2. วัตถุประสงค์</h2>
+<ul>
+<li>จัดการเรียนการสอนด้านวิทยาลัยการบินร่วมกัน</li>
+<li>ใช้สถานที่ อาคารปฏิบัติการ และทรัพยากรร่วมกัน</li>
+<li>ยกระดับมาตรฐานการผลิตบุคลากรด้านการบิน</li>
+</ul>
+</div>
+
+<div id="scope" class="section">
+<h2>3. ขอบเขตความร่วมมือ</h2>
+<ul>
+<li>การใช้ตึกเรียน ห้องปฏิบัติการ และเครื่องจำลองการบิน</li>
+<li>การใช้บุคลากรผู้สอนจากทั้งสองฝ่าย</li>
+<li>การฝึกภาคสนามและภาคปฏิบัติ</li>
+<li>การประเมินผลและการออกเอกสารรับรอง</li>
+</ul>
+</div>
+
+<div id="management" class="section">
+<h2>4. โครงสร้างการบริหารโครงการ</h2>
+<p>จัดตั้งคณะกรรมการบริหารร่วม ประกอบด้วยผู้แทนจากทั้งสองมหาวิทยาลัย ทำหน้าที่กำหนดนโยบาย วางแผนรับนักศึกษา จัดสรรทรัพยากร และแก้ไขข้อขัดแย้ง</p>
+<ul>
+<li>กำหนดแผนการดำเนินงานประจำปี</li>
+<li>ติดตามและประเมินผลโครงการ</li>
+<li>รายงานต่อผู้บริหารระดับสูง</li>
+</ul>
+</div>
+
+<div id="academic" class="section">
+<h2>5. การจัดการเรียนการสอน</h2>
+<ul>
+<li>ใช้หลักสูตรที่ได้รับการรับรองตามมาตรฐานการบิน</li>
+<li>กำหนดคุณสมบัติอาจารย์ตามเกณฑ์วิชาชีพ</li>
+<li>ใช้เกณฑ์ประเมินผลร่วมกัน</li>
+<li>นักศึกษาต้องปฏิบัติตามระเบียบความปลอดภัยอย่างเคร่งครัด</li>
+</ul>
+</div>
+
+<div id="finance" class="section">
+<h2>6. การเงินและค่าใช้จ่าย</h2>
+<ul>
+<li>กำหนดค่าธรรมเนียมการใช้สถานที่และอุปกรณ์</li>
+<li>กำหนดสัดส่วนรายได้ (ถ้ามี)</li>
+<li>กำหนดค่าตอบแทนอาจารย์และบุคลากร</li>
+<li>ตรวจสอบบัญชีร่วมกันอย่างโปร่งใส</li>
+</ul>
+</div>
+
+<div id="liability" class="section">
+<h2>7. ความรับผิดและประกันภัย</h2>
+<ul>
+<li>กำหนดความรับผิดกรณีเกิดอุบัติเหตุ</li>
+<li>จัดทำประกันภัยสำหรับนักศึกษา</li>
+<li>กำหนดแนวทางชดใช้ความเสียหายต่อทรัพย์สิน</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>8. ระยะเวลาและการยกเลิก</h2>
+<p>ข้อตกลงนี้มีผลบังคับใช้เป็นระยะเวลา 3 ปี นับตั้งแต่วันลงนาม และสามารถต่ออายุได้โดยความเห็นชอบร่วมกัน การยกเลิกต้องแจ้งล่วงหน้าไม่น้อยกว่า 180 วัน และต้องดูแลนักศึกษาที่กำลังศึกษาอยู่จนสำเร็จหลักสูตร</p>
+</div>
+
+<div class="section">
+<h2>9. การแก้ไขเพิ่มเติม</h2>
+<p>การแก้ไขข้อตกลงต้องทำเป็นลายลักษณ์อักษร และได้รับความเห็นชอบจากทั้งสองฝ่าย</p>
+</div>
+
+<div class="section">
+<h2>ลงนาม</h2>
+<div class="signature">
+<div>
+<p>......................................................</p>
+<p>อธิการบดีมหาวิทยาลัยสิบศิลป์</p>
+</div>
+
+<div>
+<p>......................................................</p>
+<p>อธิการบดีมหาวิทยาลัยเบงจันทร์</p>
+</div>
+</div>
+<button onclick="window.print()">พิมพ์เป็น PDF</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 โครงการความร่วมมือวิทยาลัยการบิน | เอกสารสำหรับเสนอผู้บริหาร
+</footer>
+
+</body>
+</html>
